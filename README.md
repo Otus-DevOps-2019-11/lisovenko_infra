@@ -29,4 +29,9 @@ https://104.155.31.90.sslip.io/
 ```
 bastion_IP = 104.155.31.90
 someinternalhost_IP = 10.132.0.3
+
+
+```
+testapp_IP = 35.198.167.169
+testapp_port = 9292
 ```
