@@ -1,2 +1,2 @@
-testapp_IP = 35.198.167.169
+testapp_IP = 34.89.111.35
 testapp_port = 9292
