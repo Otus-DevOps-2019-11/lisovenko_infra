@@ -1,32 +1,29 @@
-## lisovenko_infra
 ```
-lisovenko Infra repository
+testapp_IP = 35.204.179.209
+testapp_port = 9292
 ```
-## Подключение к someinternalhost в одну команду
+# Запуск с локальным startup-script
 ```
-ssh -i ~/.ssh/appuser -A -t appuser@104.155.31.90 ssh 10.132.0.3
-```
-## Подключение через 'ssh someinternalhost'. Добавить в /etc/ssh/ssh_config
-```
-host bastion
-    HostName 104.155.31.90
-    User appuser
-    IdentityFile ~/.ssh/appuser
-    ForwardAgent yes
+gcloud compute instances create reddit-app\
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --restart-on-failure \
+  --metadata-from-file startup-script=/home/lisovenko_evgeny/startup-script.sh
 
-Host someinternalhost
-    HostName 10.132.0.3
-    User appuser
-    ProxyJump bastion
 ```
-## Добавлен доступ через валидный сертификат
+# Правила через gcloud
 ```
-https://104.155.31.90.sslip.io/
-
-Надо ли было дополнительно прикручивать Let’s Encrypt?
-```
-## Адреса
-```
-bastion_IP = 104.155.31.90
-someinternalhost_IP = 10.132.0.3
+gcloud compute firewall-rules create default-puma-server \
+    --network default \
+    --priority 1000 \
+    --direction ingress \
+    --action allow \
+    --target-tags puma-server \
+    --source-ranges 0.0.0.0/0 \
+    --rules TCP:9292 \
+    --no-disabled \
+    --no-enable-logging
 ```
