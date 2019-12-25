@@ -1,10 +1,10 @@
 {
     "project_id": "ID",
     "source_image_family": "ubuntu-1604-lts",
-    "image_description":"Description"
-    "disk_type":"pd-standard"
+    "image_description":"Description",
+    "disk_type":"pd-standard",
     "machine_type": "f1-micro",
-    "image_family": "ID-base",
+    "image_family": "reddit-base",
     "zone": "europe-west1-b",
     "tags":"reddit-app"
 }
