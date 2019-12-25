@@ -1,8 +1,0 @@
-{
-    "project_id": "infra-262710",
-    "source_image_family": "ubuntu-1604-lts",
-    "machine_type": "f1-micro",
-    "image_family": "reddit-base",
-    "zone": "europe-west1-b"
-}
-
