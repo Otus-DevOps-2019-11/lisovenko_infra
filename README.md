@@ -1,29 +1,15 @@
+1. Параметризированы:
 ```
-testapp_IP = 35.204.179.209
-testapp_port = 9292
+• ID проекта (обязательно)
+• source_image_family (обязательно)
+• machine_type 
 ```
-# Запуск с локальным startup-script
+2. Создан variables.json и добавлен в .gitignor
+3. Исследованы другие опции builder для GCP. Добавлены опции:
 ```
-gcloud compute instances create reddit-app\
-  --boot-disk-size=10GB \
-  --image-family ubuntu-1604-lts \
-  --image-project=ubuntu-os-cloud \
-  --machine-type=g1-small \
-  --tags puma-server \
-  --restart-on-failure \
-  --metadata-from-file startup-script=/home/lisovenko_evgeny/startup-script.sh
+• Описание образа
+• Размер и тип диска
+• Теги
+```
+4. Создан variables.json.example с примером заполнения
 
-```
-# Правила через gcloud
-```
-gcloud compute firewall-rules create default-puma-server \
-    --network default \
-    --priority 1000 \
-    --direction ingress \
-    --action allow \
-    --target-tags puma-server \
-    --source-ranges 0.0.0.0/0 \
-    --rules TCP:9292 \
-    --no-disabled \
-    --no-enable-logging
-```
