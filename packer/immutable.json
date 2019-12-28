@@ -5,7 +5,7 @@
       "image_descript":  "Image Description",
       "disk_type": "pd-standard",
       "machine_type": "f1-micro",
-      "image_family": "reddit-base",
+      "image_family": "reddit-full",
       "zone": "europe-west1-b",
       "tags": "reddit-app"
     },
@@ -34,6 +34,21 @@
         {
             "type": "shell",
             "script": "scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/deploy.sh",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "file",
+            "source": "files/puma.service",
+            "destination": "/home/appuser/puma.service"
+        },
+        {
+            "type": "shell",
+            "script": "files/puma.sh",
             "execute_command": "sudo {{.Path}}"
         }
     ]
