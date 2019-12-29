@@ -1,29 +1,22 @@
+1. Параметризированы:
 ```
-testapp_IP = 35.204.179.209
-testapp_port = 9292
+• ID проекта (обязательно)
+• source_image_family (обязательно)
+• machine_type 
 ```
-# Запуск с локальным startup-script
-```
-gcloud compute instances create reddit-app\
-  --boot-disk-size=10GB \
-  --image-family ubuntu-1604-lts \
-  --image-project=ubuntu-os-cloud \
-  --machine-type=g1-small \
-  --tags puma-server \
-  --restart-on-failure \
-  --metadata-from-file startup-script=/home/lisovenko_evgeny/startup-script.sh
+2. Создан variables.json и добавлен в .gitignor
+
+3. Исследованы другие опции builder для GCP. Добавлены опции:
 
 ```
-# Правила через gcloud
+• Описание образа
+• Размер и тип диска
+• Теги
 ```
-gcloud compute firewall-rules create default-puma-server \
-    --network default \
-    --priority 1000 \
-    --direction ingress \
-    --action allow \
-    --target-tags puma-server \
-    --source-ranges 0.0.0.0/0 \
-    --rules TCP:9292 \
-    --no-disabled \
-    --no-enable-logging
-```
+4. Создан variables.json.example с примером заполнения.
+
+5. Создан шаблон immutable.json с image_family reddit-full.
+Для запуска приложения используется systemd unit.
+
+6. Создан .sh скрипт для запуска виртуальной машины из образа,
+создаваемого после immutable.json.
