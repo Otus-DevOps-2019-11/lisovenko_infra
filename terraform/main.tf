@@ -8,14 +8,27 @@ provider "google" {
   project = var.project
   region  = var.region
 }
+
+#resource "google_compute_project_metadata_item" "block-project-ssh-keys" {
+#  project = var.project
+#  key     = "block-project-ssh-keys"
+#  value   = "false"
+#}
+
+#resource "google_compute_project_metadata_item" "default" {
+#  key     = "ssh-keys"
+#  value   = "appuser:${file(var.public_key_path)}\nappuser2:${file(var.public_key_path)}\nappuser3:${file(var.public_key_path)}"
+#}
+
 resource "google_compute_instance" "app" {
   name         = "reddit-app"
   machine_type = "g1-small"
-  zone         = "var.zone"
+  zone         = var.zone
   tags         = ["reddit-app"]
   metadata = {
     # путь до публичного ключа
     ssh-keys = "appuser:${file(var.public_key_path)}"
+    #ssh-keys = "appuser:${file(var.public_key_path)}\nappuser1:${file(var.public_key_path)}\nappuser2:${file(var.public_key_path)}"
   }
   boot_disk {
     initialize_params {
