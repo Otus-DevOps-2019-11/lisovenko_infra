@@ -20,5 +20,5 @@ module "db" {
 
 module "firewall" {
   source        = "../modules/vpc"
-  source_ranges = ["109.167.205.114/32"]
+  source_ranges = ["0.0.0.0/0"]
 }
