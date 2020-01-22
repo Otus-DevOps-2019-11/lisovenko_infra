@@ -9,7 +9,8 @@ module "storage-bucket" {
   version = "0.3.0"
 
   # Имя поменяйте на другое
-  name = "storage-bucket-test"
+  name = "bucket-storage-reg"
+  location = var.region
 }
 
 output storage-bucket_url {
