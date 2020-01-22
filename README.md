@@ -1,3 +1,14 @@
+Terraform-2
+
+1. Создана новая ветка terraform-2;
+2. Добавлено правильно фильтрации в state файл через terraform import;
+3. Через packer создано два образа reddit-app-base и reddit-db-base;
+4. Созданы окружения stage и prod;
+5. Проект разбит на модули;
+5. Создан storage-bucket для создания бакета в сервисе Storage.
+
+
+
 Terraform-1
 
 1. Создана новая ветка terraform-1;
