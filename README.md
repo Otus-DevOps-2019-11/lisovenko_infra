@@ -1,3 +1,12 @@
+Ansible-1
+
+1. Создана новая ветка ansible-1;
+2. Установлен Ansible;
+3. Поднято окружение stage;
+4. Созданы простейшие playbook;
+5. После ansible app -m command -a 'rm -rf ~/reddit' и повторного прогона изменилось 'changed=1' в виду восстановления директории.
+
+
 Terraform-2
 
 1. Создана новая ветка terraform-2;
