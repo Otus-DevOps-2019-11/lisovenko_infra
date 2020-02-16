@@ -5,7 +5,7 @@
       "image_descript":  "Image Description",
       "disk_type": "pd-standard",
       "machine_type": "f1-micro",
-      "image_family": "reddit-app-base",
+      "image_family": "reddit-app-base-2",
       "zone": "europe-west1-b",
       "tags": "reddit-app"
     },
@@ -26,9 +26,8 @@
     ],
     "provisioners": [
         {
-            "type": "shell",
-            "script": "scripts/install_ruby.sh",
-            "execute_command": "sudo {{.Path}}"
+            "type": "ansible",
+            "playbook_file": "ansible/packer_app.yml"
         }
     ]
 }

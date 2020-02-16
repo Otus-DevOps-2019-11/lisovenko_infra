@@ -5,11 +5,10 @@
       "image_descript":  "Image Description",
       "disk_type": "pd-standard",
       "machine_type": "f1-micro",
-      "image_family": "reddit-db-base-2",
+      "image_family": "reddit-app-base",
       "zone": "europe-west1-b",
       "tags": "reddit-app"
     },
-
     "builders": [
         {
             "type": "googlecompute",
@@ -27,8 +26,9 @@
     ],
     "provisioners": [
         {
-            "type": "ansible",
-            "playbook_file": "ansible/packer_db.yml"
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
         }
     ]
 }
